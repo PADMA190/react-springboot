@@ -7,11 +7,12 @@ function AddUser() {
 
   const [user, setUser] = useState({
     name: "",
-    username: "",
+    collegeid: "",
     email: "",
+    branch:""
   });
 
-  const { name, username, email } = user;
+  const { name, collegeid, email,branch } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -44,15 +45,15 @@ function AddUser() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Username" className="form-label">
-                Username
+              <label htmlFor="CollegeId" className="form-label">
+                CollegeId
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your username"
-                name="username"
-                value={username}
+                placeholder="Enter your collegeid"
+                name="collegeid"
+                value={collegeid}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -66,6 +67,19 @@ function AddUser() {
                 placeholder="Enter your e-mail address"
                 name="email"
                 value={email}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="branch" className="form-label">
+               branch
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter your branch"
+                name="branch"
+                value={branch}
                 onChange={(e) => onInputChange(e)}
               />
             </div>

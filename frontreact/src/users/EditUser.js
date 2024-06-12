@@ -1,18 +1,21 @@
+// EditUser.js
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function EditUser() {
-  let navigate = useNavigate();
-  const { id } = useParams();
+  const navigate = useNavigate();
+  const { id, branch } = useParams();
 
   const [user, setUser] = useState({
     name: "",
-    username: "",
+    collegeid: "",
     email: "",
+    branch: "",
   });
 
-  const { name, username, email } = user;
+  const { name, collegeid, email } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -34,7 +37,7 @@ function EditUser() {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:8080/user/${id}`, user);
-      navigate("/");
+      navigate(`/students/branch/${branch}`);
     } catch (error) {
       console.error("There was an error updating the user!", error);
     }
@@ -61,15 +64,15 @@ function EditUser() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Username" className="form-label">
-                Username
+              <label htmlFor="CollegeId" className="form-label">
+                CollegeId
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your username"
-                name="username"
-                value={username}
+                placeholder="Enter your CollegeId"
+                name="collegeid"
+                value={collegeid}
                 onChange={onInputChange}
                 required
               />
@@ -88,10 +91,14 @@ function EditUser() {
                 required
               />
             </div>
+            
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/viewstudents">
+            <Link
+              className="btn btn-outline-danger mx-2"
+              to={`/students/branch/${branch}`}
+            >
               Cancel
             </Link>
           </form>

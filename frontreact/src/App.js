@@ -14,13 +14,12 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/students/branch/:branch" element={<Manage />} />
           <Route exact path="/departments" element={<Departments />} />
-          <Route exact path="/viewstudents" element={<Manage />} />
           <Route exact path="/adduser" element={<AddUser />} />
-          <Route exact path="/edituser/:id" element={<EditUser />} />
+          <Route exact path="/edituser/:branch/:id" element={<EditUser />} />
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
         </Routes>
       </Router>
